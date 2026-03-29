@@ -139,7 +139,7 @@ public class ElectionApp {
         System.out.println("Vote cast successfully!");
     }
 
-    private Candidate findCandidateById(int id) {
+    public Candidate findCandidateById(int id) {
         for (Candidate candidate : candidates) {
             if (candidate.getId() == id) {
                 return candidate;
@@ -148,7 +148,7 @@ public class ElectionApp {
         return null;
     }
 
-    private Voter findVoterById(int id) {
+    public Voter findVoterById(int id) {
         for (Voter voter : voters) {
             if (voter.getId() == id) {
                 return voter;
@@ -244,5 +244,10 @@ public class ElectionApp {
                 System.out.println("Please enter a valid number!");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        ElectionApp app = new ElectionApp();
+        app.runMenu();
     }
 }
