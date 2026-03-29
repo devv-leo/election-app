@@ -157,6 +157,48 @@ public class ElectionApp {
         return null;
     }
 
+    public void displayResults() {
+        if (candidates.isEmpty()) {
+            System.out.println("No candidates registered yet!");
+            return;
+        }
+        
+        System.out.println("\n--- ELECTION RESULTS ---");
+        
+        Candidate winner = candidates.get(0);
+        int totalVotes = 0;
+        
+        for (Candidate candidate : candidates) {
+            int votes = candidate.getVoteCount();
+            totalVotes += votes;
+            
+            if (votes > winner.getVoteCount()) {
+                winner = candidate;
+            }
+            
+            System.out.println(candidate.getName() + ": " + votes + " votes");
+        }
+        
+        System.out.println("\nTotal votes cast: " + totalVotes);
+        
+        int votedCount = 0;
+        for (Voter voter : voters) {
+            if (voter.hasVoted()) {
+                votedCount++;
+            }
+        }
+        
+        System.out.println("Voter turnout: " + votedCount + "/" + voters.size() + 
+                           " (" + (voters.isEmpty() ? 0 : (votedCount * 100 / voters.size())) + "%)");
+        
+        if (totalVotes > 0) {
+            System.out.println("\nWINNER: " + winner.getName() + " with " + winner.getVoteCount() + " votes!");
+        } else {
+            System.out.println("\nNo votes have been cast yet.");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         ElectionApp app = new ElectionApp();
         System.out.println("Welcome to my Election App!");
