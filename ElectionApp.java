@@ -99,6 +99,64 @@ public class ElectionApp {
         System.out.println();
     }
 
+    public void castVote() {
+        if (candidates.isEmpty()) {
+            System.out.println("No candidates available for voting!");
+            return;
+        }
+        
+        if (voters.isEmpty()) {
+            System.out.println("No voters registered yet!");
+            return;
+        }
+        
+        displayCandidates();
+        System.out.print("Enter your voter ID: ");
+        int voterId = Integer.parseInt(scanner.nextLine().trim());
+        
+        Voter voter = findVoterById(voterId);
+        if (voter == null) {
+            System.out.println("Voter not found!");
+            return;
+        }
+        
+        if (voter.hasVoted()) {
+            System.out.println("You have already voted!");
+            return;
+        }
+        
+        System.out.print("Enter candidate ID to vote for: ");
+        int candidateId = Integer.parseInt(scanner.nextLine().trim());
+        
+        Candidate candidate = findCandidateById(candidateId);
+        if (candidate == null) {
+            System.out.println("Candidate not found!");
+            return;
+        }
+        
+        candidate.incrementVoteCount();
+        voter.setVoted();
+        System.out.println("Vote cast successfully!");
+    }
+
+    private Candidate findCandidateById(int id) {
+        for (Candidate candidate : candidates) {
+            if (candidate.getId() == id) {
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    private Voter findVoterById(int id) {
+        for (Voter voter : voters) {
+            if (voter.getId() == id) {
+                return voter;
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         ElectionApp app = new ElectionApp();
         System.out.println("Welcome to my Election App!");
