@@ -199,9 +199,50 @@ public class ElectionApp {
         System.out.println();
     }
 
-    public static void main(String[] args) {
-        ElectionApp app = new ElectionApp();
-        System.out.println("Welcome to my Election App!");
-        app.scanner.close();
+    public void runMenu() {
+        while (true) {
+            System.out.println("\n=== ELECTION APP MENU ===");
+            System.out.println("1. Register Candidate");
+            System.out.println("2. Register Voter");
+            System.out.println("3. Display Candidates");
+            System.out.println("4. Display Voters");
+            System.out.println("5. Cast Vote");
+            System.out.println("6. View Results");
+            System.out.println("7. Exit");
+            System.out.print("Choose an option: ");
+            
+            try {
+                int choice = Integer.parseInt(scanner.nextLine().trim());
+                
+                switch (choice) {
+                    case 1:
+                        registerCandidate();
+                        break;
+                    case 2:
+                        registerVoter();
+                        break;
+                    case 3:
+                        displayCandidates();
+                        break;
+                    case 4:
+                        displayVoters();
+                        break;
+                    case 5:
+                        castVote();
+                        break;
+                    case 6:
+                        displayResults();
+                        break;
+                    case 7:
+                        System.out.println("Thank you for using Election App!");
+                        scanner.close();
+                        return;
+                    default:
+                        System.out.println("Invalid option! Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number!");
+            }
+        }
     }
 }
