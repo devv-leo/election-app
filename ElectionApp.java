@@ -63,6 +63,42 @@ public class ElectionApp {
         System.out.println();
     }
 
+    public void registerVoter() {
+        System.out.print("Enter voter name: ");
+        String name = scanner.nextLine().trim();
+        
+        if (name.isEmpty()) {
+            System.out.println("Name cannot be empty!");
+            return;
+        }
+        
+        for (Voter voter : voters) {
+            if (voter.getName().equalsIgnoreCase(name)) {
+                System.out.println("Voter already exists!");
+                return;
+            }
+        }
+        
+        int newId = voters.size() + 1;
+        Voter voter = new Voter(newId, name);
+        addVoter(voter);
+        System.out.println("Voter registered successfully!");
+    }
+
+    public void displayVoters() {
+        if (voters.isEmpty()) {
+            System.out.println("No voters registered yet.");
+            return;
+        }
+        
+        System.out.println("\n--- Registered Voters ---");
+        for (Voter voter : voters) {
+            String status = voter.hasVoted() ? "Voted" : "Not Voted";
+            System.out.println(voter.getId() + ". " + voter.getName() + " (" + status + ")");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         ElectionApp app = new ElectionApp();
         System.out.println("Welcome to my Election App!");
