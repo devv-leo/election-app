@@ -2,14 +2,6 @@
 
 A terminal-based Java application for managing general elections with in-memory storage.
 
-## Features
-
-- Candidate registration and management
-- Voter registration with voting status tracking
-- Secure voting system with duplicate prevention
-- Real-time election results and winner calculation
-- Voter turnout statistics
-
 ## Usage
 
 1. Run the application:
@@ -35,6 +27,14 @@ A terminal-based Java application for managing general elections with in-memory 
 - `ElectionApp`: Main application class with all functionality
 - `Candidate`: Represents election candidates with vote tracking
 - `Voter`: Represents voters with voting status
+
+## Features
+
+-  Candidate registration and management
+- Voter registration with voting status tracking
+- Secure voting system with duplicate prevention
+- Real-time election results and winner calculation
+- Voter turnout statistics
 
 ## Limitations
 
